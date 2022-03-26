@@ -1,8 +1,10 @@
-import './GobalStyle.css';
+import './ResetStyle.css';
+import './GlobalStyle.css';
+
 
 function App() {
   return (
-    <div></div>
+    <div>Ronaldo</div>
   );
 }
 
