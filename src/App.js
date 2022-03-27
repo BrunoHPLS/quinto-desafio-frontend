@@ -31,7 +31,7 @@ function App() {
       <FormularioPesquisa submitAction={submitAction}>
       </FormularioPesquisa>
       <TabelaSaldo listaOriginal={listaOriginal} listaFiltrada={tableData}/>
-      <Tabela elementos={tableData} pagination="5"/>
+      <Tabela elementos={tableData} pagination={5}/>
     </style.AppContainer>
   );
 }

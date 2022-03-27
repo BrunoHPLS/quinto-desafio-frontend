@@ -12,7 +12,8 @@ export const InputContainer = styled.div`
 export const InputLabel = styled.label`
     cursor: pointer;
     text-transform: capitalize;
-    color: #ccc;
+    color: #FDFDFD;
+    font-size: 1.25rem;
 
     &::after{
         content:":";

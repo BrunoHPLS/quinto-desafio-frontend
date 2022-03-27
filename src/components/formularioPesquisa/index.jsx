@@ -25,7 +25,8 @@ function FormularioPesquisa(props) {
     <CampoInput id="Data de Fim" type="date"/>
     <CampoInput id="Nome operador transação" placeholder="ex: Beltrano"/>
     <CampoInput id="ID usuário" placeholder="default: 1"/>
-    <style.SubmitButton type="submit">Pesquisar</style.SubmitButton>
+    <style.Button type="reset" icon="refresh">Reset</style.Button>
+    <style.Button type="submit" icon="search">Pesquisar</style.Button>
   </style.FormContainer>
   );
 }

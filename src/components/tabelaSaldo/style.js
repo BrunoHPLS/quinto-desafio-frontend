@@ -20,6 +20,6 @@ export const Value = styled.p`
     }
     &::after{
         content: "${({value})=>value}";
-        color: ${({value})=>(value>0) ? "green":"red"};
+        color: ${({value})=>(value>0) ? "green":(value===0) ?"gray; content: '0,00'":"red"};
     }
 `;
