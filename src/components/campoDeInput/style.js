@@ -20,6 +20,8 @@ export const InputLabel = styled.label`
 `;
 
 export const InputField = styled.input`
+    width: 15rem;
+    height: 2rem;
     font-size: 1.5rem;
     padding: 0.5rem;
     border-radius: 0.5rem;
