@@ -1,8 +1,13 @@
 import React from 'react';
 import * as style from './style';
 
-function CampoInput() {
-  return <div />;
+function CampoInput(props) {
+  return (
+    <style.InputContainer>
+        <style.InputLabel for={props.id}>{props.id}</style.InputLabel>
+        <style.InputField id={props.id} placeholder={props.placeholder} type={props.type} />
+    </style.InputContainer>
+    );
 }
 
 export default CampoInput;
