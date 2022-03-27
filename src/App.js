@@ -1,21 +1,37 @@
+import React,{useState,useEffect} from 'react';
 import './ResetStyle.css';
 import './GlobalStyle.css';
 import * as style from './style';
 import FormularioPesquisa from './components/formularioPesquisa';
-import CampoInput from './components/campoDeInput';
 import Tabela from './components/tabela';
+import TransferenciasService from './services/TransferenciasService';
+import TabelaSaldo from './components/tabelaSaldo';
 
 
 function App() {
+  
+  const setOriginalValues = (id) =>{
+    TransferenciasService(id).get.then((res)=>setListaOriginal(res.data))
+  };
+
+  const [tableData,setTableData] = useState([]);
+  const [listaOriginal,setListaOriginal] = useState([]);
+
+  useEffect(()=>{
+    TransferenciasService(1).get.then((res)=>setTableData(res.data)).then(setOriginalValues(1));
+  },[]);
+
+  const submitAction = (id,operador,dataInicio,dataFim) => {
+    TransferenciasService(id,operador,dataInicio,dataFim).get.then((res)=>setTableData(res.data)).then(setOriginalValues(id));
+  }
+    
+
   return (
     <style.AppContainer>
-      <FormularioPesquisa>
-        <CampoInput id="Data de Inicio" type="date" placeholder="2001-08-29"/>
-        <CampoInput id="Data de Fim" type="date"/>
-        <CampoInput id="Nome operador transação" placeholder="ex: Ronaldo"/>
-        <CampoInput id="ID usuário" placeholder="ex: 2"/>
+      <FormularioPesquisa submitAction={submitAction}>
       </FormularioPesquisa>
-      <Tabela elementos={[{data:'29/08/2001',valor:'300,00',tipo:'SAQUE',nomeOperador:''},{data:'29/08/2001',valor:'300,00',tipo:'SAQUE',nomeOperador:''}]} pagination="5"/>
+      <TabelaSaldo listaOriginal={listaOriginal} listaFiltrada={tableData}/>
+      <Tabela elementos={tableData} pagination="5"/>
     </style.AppContainer>
   );
 }

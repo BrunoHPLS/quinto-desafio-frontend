@@ -5,7 +5,7 @@ function CampoInput(props) {
 
   return (
     <style.InputContainer>
-        <style.InputLabel for={props.id}>{props.id}</style.InputLabel>
+        <style.InputLabel htmlFor={props.id}>{props.id}</style.InputLabel>
         <style.InputField 
         id={props.id} 
         placeholder={props.placeholder}

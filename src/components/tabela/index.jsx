@@ -1,4 +1,4 @@
-import React,{useState, useRef}from 'react';
+import React,{useState, useRef, useEffect}from 'react';
 import * as style from './style';
 
 
@@ -7,8 +7,12 @@ function Tabela({elementos,pagination}) {
     const limit=pagination;
 
     const tableIndex = useRef(0);
+
+    useEffect(()=>{
+        changePage();
+    },[elementos]);
     
-    const [rows,setRows]=useState(elementos.slice(0,(elementos.length<limit) ? elementos.length:limit));
+    const [rows,setRows]=useState([]);
 
 
     const changePage = () =>{
@@ -42,30 +46,32 @@ function Tabela({elementos,pagination}) {
       <style.TableContainer>
           <thead>
               <tr>
-                  <th>Data</th>
-                  <th>Valor</th>
-                  <th>Tipo</th>
-                  <th>Nome Operador Transação</th>
+                  <style.TableColumn>Data</style.TableColumn>
+                  <style.TableColumn>Valor</style.TableColumn>
+                  <style.TableColumn>Tipo</style.TableColumn>
+                  <style.TableColumn>Nome Operador Transação</style.TableColumn>
               </tr>
           </thead>
           <style.TableBody>
-              {rows.map((element)=>{
+              {rows.length > 0 ? rows.map((element)=>{
                   return (
                       <style.BodyTr key={element.id}>
-                          <td align="center">{element.data}</td>
-                          <td align="center">{element.valor}</td>
-                          <td align="center">{element.tipo}</td>
-                          <td align="center">{element.nomeOperador}</td>
+                          <style.TableCell>{element.dataTransferencia.substring(0,10)}</style.TableCell>
+                          <style.TableCell>{element.valor}</style.TableCell>
+                          <style.TableCell>{element.tipo}</style.TableCell>
+                          <style.TableCell>{element.nomeOperadorTransacao ? element.nomeOperadorTransacao:"null"}</style.TableCell>
                       </style.BodyTr>
                   )
-              })}
+              }):<tr><td colSpan="4"><style.NoDataMsg/></td></tr>}
           </style.TableBody>
           <tfoot>
-              <td align="center" onClick={(event)=>{firstPage()}}><button>Primeira pagina</button></td>
-              <td align="center" onClick={(event)=>{previousPage()}}><button>Anterior</button></td>
-              <td align="center" onClick={(event)=>{nextPage()}}><button>Proximo</button></td>
-              <td align="center" onClick={(event)=>{lastPage()}}><button>Ultima pagina</button></td>
-            </tfoot>
+                <tr>
+                    <td><style.TableBtn onClick={(event)=>{firstPage()}}>Primeira pagina</style.TableBtn></td>
+                    <td><style.TableBtn onClick={(event)=>{previousPage()}}>Anterior</style.TableBtn></td>
+                    <td><style.TableBtn onClick={(event)=>{nextPage()}}>Proximo</style.TableBtn></td>
+                    <td><style.TableBtn onClick={(event)=>{lastPage()}}>Ultima pagina</style.TableBtn></td>
+                </tr>
+           </tfoot>
       </style.TableContainer>
   );
 }

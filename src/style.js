@@ -9,12 +9,14 @@ export const AppContainer = styled.div`
 
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 3rem;
 
     &::before{
         position: absolute;
         font-size: 2rem;
         content: "Gerenciador de Transferências";
-        top: -2rem;
+        top: -2.5rem;
         left: 50%;
         transform: translateX(-50%);
     }

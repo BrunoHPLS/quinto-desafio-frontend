@@ -1,5 +1,5 @@
 :root{
-    --preto: #2F2F2F;
+    --background: #5c5c5c;
 }
 
 body {
@@ -10,4 +10,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    background-color: var(--background);
 }
